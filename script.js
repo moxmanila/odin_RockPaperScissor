@@ -4,29 +4,49 @@
 
 
 // User has to pick one of the three and execute
+
+
+
 // Computer randomly chooses an option out of 3
 
 function getComputerChoice () { 
-      let i = Math.floor(Math.random()*3)
-
-
+    let i = Math.floor(Math.random()*3)
         if (i === 0) {
-            console.log ("Rock")
+           return "Rock"
         } else if (i === 1) {
-            console.log ("Paper")
+            return "Paper"
         }  else if (i === 2) {
-            console.log ("Scissor")
+            return "Scissor"
         }
             else {
-                console.log ("computerChoice Error")
+            console.log ("computerChoice Error")
         }
     
 } 
 
-// Order so that 0 = Rock, 1 = Paper, 2 = Scissor
+
+// Execute a decision function that takes playerSelection
+// and computerSelection and decides a winner by logging a text 
+// "You Lose! Paper beats Rock"
 
 
 
-// Execute a decision function on who is winning
-// Declare the winner via console log
+function playRound() {
+    if (computerSelection == "Paper") {
+        console.log ("Lose")
+    }
+    else if (computerSelection == "Rock") {
+        console.log ("Tie")
+    }
+    else if (computerSelection == "Scissor") {
+        console.log ("Win")
+    }
+
+
+  }
+
+const playerSelection = "Rock"
+const computerSelection = getComputerChoice ()
+
+
 
