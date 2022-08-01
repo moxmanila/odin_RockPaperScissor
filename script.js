@@ -9,6 +9,9 @@
 
 // Computer randomly chooses an option out of 3
 
+const playerSelection = "Rock"
+
+
 function getComputerChoice () { 
     let i = Math.floor(Math.random()*3)
         if (i === 0) {
@@ -32,21 +35,22 @@ function getComputerChoice () {
 
 
 function playRound() {
-    if (computerSelection == "Paper") {
+    const computerSelection = getComputerChoice ()
+
+    if (computerSelection === "Paper") {
         console.log ("Lose")
     }
-    else if (computerSelection == "Rock") {
+    else if (computerSelection === "Rock") {
         console.log ("Tie")
     }
-    else if (computerSelection == "Scissor") {
+    else if (computerSelection === "Scissor") {
         console.log ("Win")
     }
+  
+    //make it so that after executing playRound () the 
 
 
   }
 
-const playerSelection = "Rock"
-const computerSelection = getComputerChoice ()
-
-
+playRound ();
 
