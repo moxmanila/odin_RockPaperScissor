@@ -1,17 +1,12 @@
 // Create the game Rock Paper Scissor, playabe only via the console.
-// Declare three input variables (Rock,Paper,Scissor)
 
 
 
-// User has to pick one of the three and execute
+// Create a prompt to ask for an input
 
+let playerSelection = "Scissor"
 
-
-// Computer randomly chooses an option out of 3
-
-const playerSelection = "Rock"
-
-
+// Output Randomized Computerchoice
 function getComputerChoice () { 
     let i = Math.floor(Math.random()*3)
         if (i === 0) {
@@ -28,29 +23,48 @@ function getComputerChoice () {
 } 
 
 
-// Execute a decision function that takes playerSelection
-// and computerSelection and decides a winner by logging a text 
-// "You Lose! Paper beats Rock"
-
-
 
 function playRound() {
     const computerSelection = getComputerChoice ()
 
-    if (computerSelection === "Paper") {
-        console.log ("Lose")
-    }
-    else if (computerSelection === "Rock") {
-        console.log ("Tie")
-    }
-    else if (computerSelection === "Scissor") {
-        console.log ("Win")
-    }
-  
-    //make it so that after executing playRound () the 
+    //Player picks Rock
+    if (playerSelection == "Rock") {
 
+        if (computerSelection === "Paper") {
+            console.log ("Lose! Rock loses to Paper.")
+        }
+        else if (computerSelection === "Rock") {
+            console.log ("Tie! Both picked Rock.")
+        }
+        else if (computerSelection === "Scissor") {
+            console.log ("Win! Your Rock beat his Scissors!")
+        }
+    }
 
+    //Player picks Paper
+    else if (playerSelection == "Paper") {
+        if (computerSelection === "Paper") {
+            console.log ("Tie! You both picked Paper.")
+        }
+        else if (computerSelection === "Rock") {
+            console.log ("Win! Your Paper beat his Rock.")
+        }
+        else if (computerSelection === "Scissor") {
+            console.log ("Lose! Your Paper loses to his Scissors!")
+        }
+    }
+
+    //Player picks Scissor
+    else if (playerSelection == "Scissor")  {
+        if (computerSelection === "Paper") {
+            console.log ("Win! Your Scissor beat his Paper.")
+        }
+        else if (computerSelection === "Rock") {
+            console.log ("Lose! His Rock beat your Scissor.")
+        }
+        else if (computerSelection === "Scissor") {
+            console.log ("Tie! You both picked Scissor.")
+        }
+    }
   }
-
-playRound ();
 
