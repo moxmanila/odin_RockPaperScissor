@@ -1,12 +1,14 @@
 // Create the game Rock Paper Scissor, playabe only via the console.
 
 
+// Define Points for Player & Computer, and Define max 
+// amount of Games being played
+let playerPoints = 0
+let computerPoints = 0
+const maxPoints = 5
 
-// Create a function that gives the player a Choice of 
 
-
-
-// Output Randomized Computerchoice
+// Get Randomized Computerchoice
 function getComputerChoice () { 
     let i = Math.floor(Math.random()*3)
         if (i === 0) {
@@ -22,6 +24,7 @@ function getComputerChoice () {
     
 } 
 
+// Function to decide a Winner between a Showoff
 function playRound(playerSelection) {
     const computerSelection = getComputerChoice ()
 
@@ -30,12 +33,14 @@ function playRound(playerSelection) {
 
         if (computerSelection === "Paper") {
             console.log ("Lose! Rock loses to Paper.")
+            computerPoints += 1
         }
         else if (computerSelection === "Rock") {
             console.log ("Tie! Both picked Rock.")
         }
         else if (computerSelection === "Scissor") {
             console.log ("Win! Your Rock beat his Scissors!")
+            playerPoints += 1
         }
     }
 
@@ -46,41 +51,55 @@ function playRound(playerSelection) {
         }
         else if (computerSelection === "Rock") {
             console.log ("Win! Your Paper beat his Rock.")
+            playerPoints += 1;
         }
         else if (computerSelection === "Scissor") {
             console.log ("Lose! Your Paper loses to his Scissors!")
+            computerPoints += 1
         }
     }
 
     //Player picks Scissor
     else if (playerSelection.toLowerCase() == "scissor")  {
         if (computerSelection === "Paper") {
-            console.log ("Win! Your Scissor beat his Paper.")
+            console.log ("Win! Your Scissor beat his Paper.");
+            playerPoints += 1;
         }
         else if (computerSelection === "Rock") {
             console.log ("Lose! His Rock beat your Scissor.")
+            computerPoints += 1
         }
         else if (computerSelection === "Scissor") {
             console.log ("Tie! You both picked Scissor.")
         }
-
     }
-    // Player types a wrong input
     else {
         console.log ("Error, wrong input detected")
     }
 }
 
-  // game() = prompt Player what he uses, return the promptInput 
-  // execute the playRound with the promptInput as playerSelection
+    
 
-  function game () {
-    const choice = prompt ("Choose Rock, Paper or Scissor");
-    playRound (choice);
-  }
 
-  //expand to  5 rounds for each one to play.
 
-  // Let the game keep log of wins / losses
-  // Declare a Winner after 5 Rounds
 
+    // Function 
+function game () {
+    while (computerPoints < maxPoints && playerPoints < maxPoints) {
+        const choice = prompt ("Choose Rock, Paper or Scissor");
+        playRound (choice);
+        console.log ("Player =" + playerPoints + " Computer =" + computerPoints)
+    }
+    if (playerPoints == maxPoints) {
+        console.log ("You win! Congratulations.")
+    } 
+    else if (computerPoints == maxPoints) {
+        console.log ("Computer wins.. what a loss.")
+    }
+    else {
+        console.log ("Error finding a winner.")
+    }
+    // Sets the Points back to zero
+    playerPoints -= playerPoints;
+    computerPoints -=computerPoints;
+}
