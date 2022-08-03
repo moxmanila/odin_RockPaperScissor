@@ -2,9 +2,9 @@
 
 
 
-// Create a prompt to ask for an input
+// Create a function that gives the player a Choice of 
 
-let playerSelection = "Scissor"
+
 
 // Output Randomized Computerchoice
 function getComputerChoice () { 
@@ -22,13 +22,11 @@ function getComputerChoice () {
     
 } 
 
-
-
-function playRound() {
+function playRound(playerSelection) {
     const computerSelection = getComputerChoice ()
 
-    //Player picks Rock
-    if (playerSelection == "Rock") {
+    //Player picks Rock (.toLowerCase turns input case insensitive)
+    if (playerSelection.toLowerCase() == "rock") {
 
         if (computerSelection === "Paper") {
             console.log ("Lose! Rock loses to Paper.")
@@ -42,7 +40,7 @@ function playRound() {
     }
 
     //Player picks Paper
-    else if (playerSelection == "Paper") {
+    else if (playerSelection.toLowerCase() == "paper") {
         if (computerSelection === "Paper") {
             console.log ("Tie! You both picked Paper.")
         }
@@ -55,7 +53,7 @@ function playRound() {
     }
 
     //Player picks Scissor
-    else if (playerSelection == "Scissor")  {
+    else if (playerSelection.toLowerCase() == "scissor")  {
         if (computerSelection === "Paper") {
             console.log ("Win! Your Scissor beat his Paper.")
         }
@@ -65,6 +63,24 @@ function playRound() {
         else if (computerSelection === "Scissor") {
             console.log ("Tie! You both picked Scissor.")
         }
+
     }
+    // Player types a wrong input
+    else {
+        console.log ("Error, wrong input detected")
+    }
+}
+
+  // game() = prompt Player what he uses, return the promptInput 
+  // execute the playRound with the promptInput as playerSelection
+
+  function game () {
+    const choice = prompt ("Choose Rock, Paper or Scissor");
+    playRound (choice);
   }
+
+  //expand to  5 rounds for each one to play.
+
+  // Let the game keep log of wins / losses
+  // Declare a Winner after 5 Rounds
 
