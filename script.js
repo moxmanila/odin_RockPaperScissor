@@ -32,14 +32,14 @@ function playRound(playerSelection) {
     if (playerSelection.toLowerCase() == "rock") {
 
         if (computerSelection === "Paper") {
-            console.log ("Lose! Rock loses to Paper.")
+            result.textContent = "Lose! Rock loses to Paper."
             computerPoints += 1
         }
         else if (computerSelection === "Rock") {
-            console.log ("Tie! Both picked Rock.")
+            result.textContent = "Tie! Both picked Rock."
         }
         else if (computerSelection === "Scissor") {
-            console.log ("Win! Your Rock beat his Scissors!")
+            result.textContent = "Win! Your Rock beat his Scissors!"
             playerPoints += 1
         }
     }
@@ -47,14 +47,14 @@ function playRound(playerSelection) {
     //Player picks Paper
     else if (playerSelection.toLowerCase() == "paper") {
         if (computerSelection === "Paper") {
-            console.log ("Tie! You both picked Paper.")
+            result.textContent = "Tie! You both picked Paper."
         }
         else if (computerSelection === "Rock") {
-            console.log ("Win! Your Paper beat his Rock.")
+            result.textContent = "Win! Your Paper beat his Rock."
             playerPoints += 1;
         }
         else if (computerSelection === "Scissor") {
-            console.log ("Lose! Your Paper loses to his Scissors!")
+            result.textContent = "Lose! Your Paper loses to his Scissors!"
             computerPoints += 1
         }
     }
@@ -62,15 +62,15 @@ function playRound(playerSelection) {
     //Player picks Scissor
     else if (playerSelection.toLowerCase() == "scissor")  {
         if (computerSelection === "Paper") {
-            console.log ("Win! Your Scissor beat his Paper.");
+            result.textContent = "Win! Your Scissor beat his Paper.";
             playerPoints += 1;
         }
         else if (computerSelection === "Rock") {
-            console.log ("Lose! His Rock beat your Scissor.")
+            result.textContent = "Lose! His Rock beat your Scissor."
             computerPoints += 1
         }
         else if (computerSelection === "Scissor") {
-            console.log ("Tie! You both picked Scissor.")
+            result.textContent = "Tie! You both picked Scissor."
         }
     }
     else {
@@ -103,3 +103,32 @@ function game () {
     playerPoints -= playerPoints;
     computerPoints -=computerPoints;
 }
+
+
+// UI FUNCTIONS //
+
+// PLAYROUND BUTTONS
+let rock = document.getElementById('rock').addEventListener('click', 
+    function () {
+        playRound('rock')
+    });
+let paper = document.getElementById('paper').addEventListener('click',
+    function () {
+        playRound('paper')
+    });
+let scissor = document.getElementById('scissor').addEventListener('click',
+    function () {
+        playRound('scissor')
+    });
+
+// TEXTFIELD FOR RESULTS
+let resultContainer = document.getElementById('result')
+let result = document.createElement('div')
+resultContainer.appendChild(result)
+
+// TEXTFIELD FOR SCOREPOINTS
+
+let scoreContainer = document.getElementById('score')
+let score = document.createElement('div')
+scoreContainer.appendChild(score)
+score.textContent = computerPoints
