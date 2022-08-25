@@ -1,14 +1,6 @@
-// Create the game Rock Paper Scissor, playabe only via the console.
 
 
-// Define Points for Player & Computer, and Define max 
-// amount of Games being played
-let playerPoints = 0
-let computerPoints = 0
-const maxPoints = 5
-
-
-// Get Randomized Computerchoice
+// GET RANDOMIZED COMPUTERCHOICE
 function getComputerChoice () { 
     let i = Math.floor(Math.random()*3)
         if (i === 0) {
@@ -24,23 +16,29 @@ function getComputerChoice () {
     
 } 
 
-// Function to decide a Winner between a Showoff
+// GAME FUNCTION
+
+let playerPoints = 0
+let computerPoints = 0
+//DEFINE MAX SCORE
+const maxPoints = 5
+
+
 function playRound(playerSelection) {
     const computerSelection = getComputerChoice ()
-
     //Player picks Rock (.toLowerCase turns input case insensitive)
     if (playerSelection.toLowerCase() == "rock") {
 
         if (computerSelection === "Paper") {
+            scoreComputer.innerHTML ="computer " + ++computerPoints
             result.textContent = "Lose! Rock loses to Paper."
-            computerPoints += 1
         }
         else if (computerSelection === "Rock") {
             result.textContent = "Tie! Both picked Rock."
         }
         else if (computerSelection === "Scissor") {
+            scorePlayer.innerHTML ="player "+ ++playerPoints
             result.textContent = "Win! Your Rock beat his Scissors!"
-            playerPoints += 1
         }
     }
 
@@ -50,85 +48,102 @@ function playRound(playerSelection) {
             result.textContent = "Tie! You both picked Paper."
         }
         else if (computerSelection === "Rock") {
+            scorePlayer.innerHTML ="player "+  ++playerPoints
             result.textContent = "Win! Your Paper beat his Rock."
-            playerPoints += 1;
         }
         else if (computerSelection === "Scissor") {
+            scoreComputer.innerHTML ="computer "+  ++computerPoints
             result.textContent = "Lose! Your Paper loses to his Scissors!"
-            computerPoints += 1
         }
     }
 
     //Player picks Scissor
     else if (playerSelection.toLowerCase() == "scissor")  {
         if (computerSelection === "Paper") {
+            scorePlayer.innerHTML ="player "+ ++playerPoints
             result.textContent = "Win! Your Scissor beat his Paper.";
-            playerPoints += 1;
         }
         else if (computerSelection === "Rock") {
+            scoreComputer.innerHTML ="computer "+ ++computerPoints
             result.textContent = "Lose! His Rock beat your Scissor."
-            computerPoints += 1
         }
         else if (computerSelection === "Scissor") {
             result.textContent = "Tie! You both picked Scissor."
         }
-    }
-    else {
-        console.log ("Error, wrong input detected")
+    }  
+    checkGameEnd ()
+}
+
+
+function checkGameEnd () {
+    if (computerPoints == maxPoints) {
+    result.textContent = "Computer Wins!!"
+
+    rock.remove();
+    scissor.remove();
+    paper.remove();
+    buttonContainer.appendChild(replay);
+
+    } 
+    else if (playerPoints == maxPoints) {
+        result.textContent = "Player Wins"
+
+    rock.remove();
+    scissor.remove();
+    paper.remove();
+    buttonContainer.appendChild(replay);
     }
 }
 
-    
 
-
-
-
-    // Function 
-function game () {
-    while (computerPoints < maxPoints && playerPoints < maxPoints) {
-        const choice = prompt ("Choose Rock, Paper or Scissor");
-        playRound (choice);
-        console.log ("Player =" + playerPoints + " Computer =" + computerPoints)
-    }
-    if (playerPoints == maxPoints) {
-        console.log ("You win! Congratulations.")
-    } 
-    else if (computerPoints == maxPoints) {
-        console.log ("Computer wins.. what a loss.")
-    }
-    else {
-        console.log ("Error finding a winner.")
-    }
-    // Sets the Points back to zero
+function replayGame () {
     playerPoints -= playerPoints;
     computerPoints -=computerPoints;
+    scorePlayer.innerHTML ="player "+ 0
+    scoreComputer.innerHTML ="computer "+ 0
+    result.textContent = 'Let\'s play a game of RPS'
+
+    replay.remove();
+    buttonContainer.appendChild(rock)
+    buttonContainer.appendChild(paper)
+    buttonContainer.appendChild(scissor)
 }
+    
 
 
 // UI FUNCTIONS //
 
 // PLAYROUND BUTTONS
-let rock = document.getElementById('rock').addEventListener('click', 
-    function () {
-        playRound('rock')
-    });
-let paper = document.getElementById('paper').addEventListener('click',
-    function () {
-        playRound('paper')
-    });
-let scissor = document.getElementById('scissor').addEventListener('click',
-    function () {
-        playRound('scissor')
-    });
+let buttonContainer = document.getElementById ('button-container');
+let rock = document.getElementById('rock')
+let paper = document.getElementById('paper')
+let scissor = document.getElementById('scissor')
+
+rock.addEventListener('click', function () {playRound('rock')});
+
+paper.addEventListener('click', function () {playRound('paper')});
+
+scissor.addEventListener('click', function () {playRound('scissor')});
 
 // TEXTFIELD FOR RESULTS
 let resultContainer = document.getElementById('result')
 let result = document.createElement('div')
+result.textContent = 'Let\'s play a game of RPS'
 resultContainer.appendChild(result)
 
 // TEXTFIELD FOR SCOREPOINTS
+let scoreComputerContainer = document.getElementById('computerscore')
+let scoreComputer = document.createElement('div')
+scoreComputer.innerHTML = "computer " +computerPoints
+scoreComputerContainer.appendChild(scoreComputer)
 
-let scoreContainer = document.getElementById('score')
-let score = document.createElement('div')
-scoreContainer.appendChild(score)
-score.textContent = computerPoints
+let scorePlayerContainer = document.getElementById('playerscore')
+let scorePlayer = document.createElement('div')
+scorePlayer.innerHTML = "player " +playerPoints
+scorePlayerContainer.appendChild(scorePlayer)
+
+// REPLAY BUTTON 
+
+let replay = document.createElement('button')
+replay.textContent = 'Play Again?'
+replay.addEventListener('click', replayGame)
